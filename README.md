@@ -1,6 +1,6 @@
 # Kanso
 
-[![license](https://img.shields.io/badge/license-MIT-e0a458)](#license)
+[![license](https://img.shields.io/badge/license-GPL--3.0-e0a458)](#license)
 [![platform](https://img.shields.io/badge/platform-linux-e0a458)](#requirements)
 
 **簡素** — simplicity.
@@ -254,4 +254,14 @@ Kanso-prompt/
 
 ## License
 
-GPL-3.0
+Kanso is licensed under the **GNU General Public License v3.0**. The full text is in
+[LICENSE](LICENSE) — the canonical version is at
+<https://www.gnu.org/licenses/gpl-3.0.txt>.
+
+Two third-party libraries are vendored at build time and remain under their own
+(MIT) licenses:
+
+- [sol2](https://github.com/ThePhD/sol2) — MIT
+- [nlohmann/json](https://github.com/nlohmann/json) — MIT
+
+Both are GPL-3.0 compatible.
