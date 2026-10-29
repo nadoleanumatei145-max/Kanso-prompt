@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dependencies — Kanso</title>
+<meta name="description" content="What Kanso needs to build and run, per distribution. Lua, sol2, nlohmann/json and a C++17 compiler — nothing else.">
+<meta name="theme-color" content="#111110">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111010'/%3E%3Cpath d='M10 11l5 5-5 5' stroke='%23e0a458' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-loading');
+  }
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">Kanso <span class="cn">簡素</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#config">Configuration</a>
+      <a href="index.html#lua">Scripting</a>
+      <a href="dependencies.html" aria-current="page">Dependencies</a>
+      <a href="index.html#install">Install</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm" href="https://github.com/nadoleanumatei145-max/Kanso-prompt">GitHub</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="deps-hero wrap">
+    <p class="eyebrow accent hero-anim">Dependencies</p>
+    <h1 class="hero-anim">Six requirements, none of them heavy.</h1>
+    <p class="lede hero-anim">
+      Kanso is a small C++ binary. It links against Lua and vendors two header-only
+      libraries. Everything else ships with your compiler. Here is exactly what you
+      need, per distribution, and how to get it.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-inner">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Requirements</p>
+        <h2>What Kanso needs to build and run.</h2>
+      </div>
+
+      <ul class="dep-list reveal">
+        <li>
+          <span class="dep-name">C++17 compiler</span>
+          <span class="dep-purpose">build</span>
+          <span class="dep-detail">g++ 9+ or clang++ 10+. Any recent version works.</span>
+        </li>
+        <li>
+          <span class="dep-name">git</span>
+          <span class="dep-purpose">build</span>
+          <span class="dep-detail">To clone the repo and vendor the header-only dependencies.</span>
+        </li>
+        <li>
+          <span class="dep-name">Lua 5.3+</span>
+          <span class="dep-purpose">runtime</span>
+          <span class="dep-detail">Development headers and shared library. 5.4 recommended.</span>
+        </li>
+        <li>
+          <span class="dep-name">sol2</span>
+          <span class="dep-purpose">build</span>
+          <span class="dep-detail">Header-only C++ ↔ Lua binding. MIT. By ThePhD.</span>
+        </li>
+        <li>
+          <span class="dep-name">nlohmann/json</span>
+          <span class="dep-purpose">build</span>
+          <span class="dep-detail">Header-only JSON parser. MIT. By Niels Lohmann.</span>
+        </li>
+        <li>
+          <span class="dep-name">zsh</span>
+          <span class="dep-purpose">runtime</span>
+          <span class="dep-detail">Any version with <code>prompt_subst</code>. That's all modern zsh.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-inner">
+      <div class="sec-head reveal">
+        <p class="eyebrow">System packages</p>
+        <h2>Install per distribution.</h2>
+        <p class="sec-lede">
+          Most package managers cover everything except sol2, which only Arch (via AUR)
+          packages. The build step below vendors sol2 either way, so skip it if you
+          already have it installed system-wide.
+        </p>
+      </div>
+
+      <div class="distro-grid">
+        <div class="reveal">
+          <p class="distro-name">Arch Linux</p>
+          <div class="code">
+            <div class="code-head"><span>shell</span><button class="copy" data-copy="distro-arch" type="button">copy</button></div>
+            <pre><code id="distro-arch">sudo pacman -S --needed base-devel git lua nlohmann-json
+
+# sol2 is in the AUR
+yay -S sol2</code></pre>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="distro-name">Debian / Ubuntu</p>
+          <div class="code">
+            <div class="code-head"><span>shell</span><button class="copy" data-copy="distro-debian" type="button">copy</button></div>
+            <pre><code id="distro-debian">sudo apt update
+sudo apt install -y build-essential git \
+  liblua5.4-dev nlohmann-json3-dev</code></pre>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="distro-name">Fedora</p>
+          <div class="code">
+            <div class="code-head"><span>shell</span><button class="copy" data-copy="distro-fedora" type="button">copy</button></div>
+            <pre><code id="distro-fedora">sudo dnf install -y gcc-c++ git \
+  lua-devel nlohmann-json-devel</code></pre>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="distro-name">openSUSE</p>
+          <div class="code">
+            <div class="code-head"><span>shell</span><button class="copy" data-copy="distro-suse" type="button">copy</button></div>
+            <pre><code id="distro-suse">sudo zypper install -y gcc-c++ git \
+  lua-devel nlohmann-json-devel</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-inner">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Build</p>
+        <h2>Clone, compile, install.</h2>
+        <p class="sec-lede">
+          The vendor step pulls the two header-only libraries into <code>./vendor/</code>.
+          Skip it if you installed them from your package manager.
+        </p>
+      </div>
+
+      <div class="code reveal">
+        <div class="code-head"><span>shell</span><button class="copy" data-copy="build-cmd" type="button">copy</button></div>
+        <pre><code id="build-cmd"># 1. Clone the repo
+git clone https://github.com/nadoleanumatei145-max/Kanso-prompt.git
+cd Kanso-prompt
+
+# 2. Vendor the header-only dependencies
+#    (skip if sol2 / nlohmann-json are installed system-wide)
+mkdir -p vendor
+git clone --depth 1 https://github.com/ThePhD/sol2.git vendor/sol2
+git clone --depth 1 https://github.com/nlohmann/json.git vendor/json
+
+# 3. Compile
+g++ src/main.cpp -o prompt_renderer -std=c++17 -O2 \
+  -I vendor/sol2/include \
+  -I vendor/json/single_include \
+  -llua
+
+# 4. Install
+sudo mv prompt_renderer /usr/local/bin/</code></pre>
+      </div>
+
+      <p class="note reveal">
+        If you have <code>sol2</code> and <code>nlohmann/json</code> installed
+        system-wide, drop the two <code>-I</code> flags. On Debian-based systems the
+        Lua library may be <code>-llua5.4</code> instead of <code>-llua</code> — check
+        with <code>pkg-config --list-all | grep lua</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-inner">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Verify</p>
+        <h2>Make sure it runs.</h2>
+        <p class="sec-lede">
+          Pass an exit code and a duration as arguments. Kanso prints a formatted
+          prompt line to stdout.
+        </p>
+      </div>
+
+      <div class="code reveal">
+        <div class="code-head"><span>shell</span><button class="copy" data-copy="verify-cmd" type="button">copy</button></div>
+        <pre><code id="verify-cmd">prompt_renderer 0 0.5</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-inner">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Next steps</p>
+        <h2>Configure it, hook it into zsh.</h2>
+      </div>
+
+      <div class="next-grid reveal">
+        <a class="next-card" href="index.html#config">
+          <span class="next-label">Configuration</span>
+          <span class="next-title">Tune modules in kanso.json</span>
+          <span class="next-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="next-card" href="index.html#install">
+          <span class="next-label">Hook</span>
+          <span class="next-title">Wire it into ~/.zshrc</span>
+          <span class="next-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="index.html">Kanso <span class="cn">簡素</span></a>
+        <p class="footer-note">
+          A prompt renderer for zsh. Written in C++, configured in JSON, extended in Lua.
+        </p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://github.com/nadoleanumatei145-max/Kanso-prompt">GitHub</a>
+        <a href="https://github.com/nadoleanumatei145-max/Kanso-prompt/issues">Issues</a>
+        <a href="index.html#config">Configuration</a>
+        <a href="index.html#lua">Lua API</a>
+        <a href="dependencies.html">Dependencies</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>kanso — 簡素, “simplicity”</span>
+      <span>Built for zsh</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
